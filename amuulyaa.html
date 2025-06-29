@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Amuulyaa 💖</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(to bottom right, #ffd6ec, #ffe2f7, #fff0f5);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .message-container {
+      z-index: 2;
+    }
+
+    .flip-container {
+      perspective: 1000px;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 20px auto;
+    }
+
+    .flipper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-container.clicked .flipper {
+      transform: rotateY(180deg);
+    }
+
+    .front, .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      backface-visibility: hidden;
+      border: 5px solid #ffb6c1;
+      box-shadow: 0 0 20px rgba(255, 182, 193, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background-color: white;
+    }
+
+    .front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .back {
+      background-color: #fff0f5;
+      transform: rotateY(180deg);
+      font-size: 1rem;
+      padding: 10px;
+      color: #c71585;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .message-box {
+      font-size: 1.2rem;
+      color: #c71585;
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 15px 20px;
+      border-radius: 20px;
+      margin: 20px auto 10px auto;
+      min-height: 60px;
+      max-width: 90%;
+      display: inline-block;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    .click-button {
+      background-color: #ffb6c1;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 182, 193, 0.5);
+      margin-top: 10px;
+    }
+
+    .click-button:hover {
+      background-color: #ff87ab;
+    }
+
+    .falling-heart {
+      position: absolute;
+      top: -50px;
+      font-size: 20px;
+      color: #ff69b4;
+      animation: fall linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .corner-gif {
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      z-index: 1;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .top-left {
+      top: 10px;
+      left: 10px;
+    }
+
+    .bottom-right {
+      bottom: 10px;
+      right: 10px;
+    }
+
+    @media (max-width: 420px) {
+      .corner-gif {
+        width: 75px;
+        height: 75px;
+      }
+
+      .message-box {
+        font-size: 1rem;
+        padding: 12px;
+      }
+
+      .flip-container {
+        width: 140px;
+        height: 140px;
+      }
+
+      .back {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
+
+      .click-button {
+        font-size: 0.95rem;
+        padding: 10px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GIF Corners -->
+  <img src="https://i.pinimg.com/originals/4d/b5/71/4db57193238c0d242f5306beb3b8e542.gif" class="corner-gif top-left" />
+  <img src="https://i.pinimg.com/originals/4d/b5/71/4db57193238c0d242f5306beb3b8e542.gif" class="corner-gif bottom-right" />
+
+  <div class="message-container">
+    <!-- Flip Circle Image -->
+    <div class="flip-container" id="flipMe">
+      <div class="flipper">
+        <div class="front">
+          <img src="Screenshot 2025-06-30 041449.png" alt="Amuulyaa" />
+        </div>
+        <div class="back">
+          You have me ❤️<br>Don’t feel sad or anxious.<br>Text me anytime.<br>I’m always here for you.
+        </div>
+      </div>
+    </div>
+
+    <!-- Loving Message -->
+    <div class="message-box" id="message">
+      You're the reason my heart smiles 💕
+    </div>
+
+    <!-- Button BELOW message -->
+    <button class="click-button" onclick="showNextMessage()">Next Message 💫</button>
+  </div>
+
+  <script>
+    const messages = [
+       "You're stronger than you think 🌟",
+        "Whatever you're going through, it will pass ☀️",
+        "You're not alone in this. I’ve got your back 💪",
+        "It’s okay to feel low sometimes. You don’t have to hide it 🤍",
+             "Your feelings are valid. Always. 🧠❤️",
+          "One step at a time, no rush 🐢✨",
+          "You matter more than you know 💛",
+             "I’m always just a message away 📲"
+    ];
+
+    let current = 0;
+    const messageEl = document.getElementById("message");
+
+    function showNextMessage() {
+      current = (current + 1) % messages.length;
+      messageEl.style.opacity = 0;
+      setTimeout(() => {
+        messageEl.innerText = messages[current];
+        messageEl.style.opacity = 1;
+      }, 200);
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("falling-heart");
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    setInterval(createHeart, 500);
+
+    document.getElementById("flipMe").addEventListener("click", function () {
+      this.classList.toggle("clicked");
+    });
+  </script>
+
+</body>
+</html>
