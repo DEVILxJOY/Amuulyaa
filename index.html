@@ -4,74 +4,55 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>For Amuulya</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
       padding: 0;
-      background-color: #ffeef8;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    .hearts {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f6d5f7, #fbe9d7);
       overflow: hidden;
     }
 
-    .heart {
-      width: 20px;
-      height: 20px;
-      background: url('https://i.pinimg.com/originals/4d/b5/71/4db57193238c0d242f5306beb3b8e542.gif') no-repeat center/cover;
-      position: absolute;
-      top: -30px;
-      animation: fall linear;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(100vh);
-        opacity: 0;
-      }
-    }
-
     .center-container {
-      position: relative;
-      z-index: 5;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       padding: 20px;
-      max-width: 90%;
-      margin: auto;
-      top: 10vh;
+      position: relative;
+      z-index: 2;
     }
 
     h1 {
-      font-size: 1.8em;
-      color: #d63384;
+      font-size: 1.6rem;
+      color: #fff;
+      text-shadow: 1px 1px 6px #ff91c3;
       margin-bottom: 20px;
+      animation: fadeInDown 1s ease-out;
     }
 
     .flip-container {
       perspective: 1000px;
-      width: 260px;
-      height: 360px;
-      margin: 20px auto;
+      width: 220px;
+      height: 220px;
+      margin-bottom: 20px;
+      border-radius: 50%;
+      overflow: hidden;
       cursor: pointer;
     }
 
     .flipper {
-      transition: 0.6s;
-      transform-style: preserve-3d;
-      position: relative;
       width: 100%;
       height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
     }
 
-    .flipped .flipper {
+    .flip-container.flipped .flipper {
       transform: rotateY(180deg);
     }
 
@@ -80,57 +61,66 @@
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      border-radius: 15px;
+      border-radius: 50%;
       overflow: hidden;
-      box-shadow: 0 0 20px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
     .front img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #ffb6c1;
     }
 
     .back {
-      background: #fff0f6;
-      color: #800080;
+      background-color: #fff0f5;
+      transform: rotateY(180deg);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      font-size: 1.1em;
-      transform: rotateY(180deg);
+      padding: 15px;
+      color: #ff69b4;
+      font-weight: 600;
+      font-size: 0.9rem;
+      line-height: 1.3rem;
+      text-align: center;
     }
 
-    #message {
-      font-size: 1.2em;
-      color: #444;
-      margin: 20px auto;
-      max-width: 300px;
-    }
-
-    #nextBtn {
-      background-color: #ff69b4;
-      border: none;
+    .message-box {
+      background: rgba(255, 255, 255, 0.7);
       padding: 10px 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      font-size: 1rem;
+      color: #d63384;
+      margin-bottom: 10px;
+      animation: fadeInUp 1s;
+      min-height: 50px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #ff8dc7;
       color: white;
-      border-radius: 25px;
-      font-size: 1em;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       cursor: pointer;
-      margin-top: 10px;
-      transition: background 0.3s;
+      animation: fadeIn 1.5s;
     }
 
-    #nextBtn:hover {
-      background-color: #ff1493;
+    button:hover {
+      background-color: #ff68b2;
     }
 
-    /* Corner GIFs */
     .corner-gif {
-      position: fixed;
       width: 90px;
-      height: 90px;
-      z-index: 10;
+      position: fixed;
+      z-index: 1;
     }
 
     .top-left {
@@ -143,85 +133,62 @@
       right: 10px;
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.4em;
-      }
-      .flip-container {
-        width: 220px;
-        height: 320px;
-      }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
-
-  <!-- Background hearts -->
-  <div class="hearts" id="hearts-container"></div>
-
-  <!-- Corner GIFs -->
-  <img class="corner-gif top-left" src="https://i.postimg.cc/6qqf9n95/Milk-And-Mocha-Kiss-Sticker-Milk-And-Mocha-Kiss-Love-Discover-Share-GIFs.gif" alt="Top Left Gif" />
-  <img class="corner-gif bottom-right" src="https://i.postimg.cc/6qqf9n95/Milk-And-Mocha-Kiss-Sticker-Milk-And-Mocha-Kiss-Love-Discover-Share-GIFs.gif" alt="Bottom Right Gif" />
+  <img src="https://i.postimg.cc/6qqf9n95/Milk-And-Mocha-Kiss-Sticker-Milk-And-Mocha-Kiss-Love-Discover-Share-GIFs.gif" class="corner-gif top-left" />
+  <img src="https://i.postimg.cc/6qqf9n95/Milk-And-Mocha-Kiss-Sticker-Milk-And-Mocha-Kiss-Love-Discover-Share-GIFs.gif" class="corner-gif bottom-right" />
 
   <div class="center-container">
-    <h1>Hey Amuulya, this space is just for you 💫</h1>
+    <h1>Hi Amuulya 🌸</h1>
 
-    <!-- Flip image card -->
-    <div class="flip-container" id="flipCard">
+    <div class="flip-container" onclick="flipImage(this)">
       <div class="flipper">
         <div class="front">
-          <img src="Screenshot 2025-06-30 041449.png" alt="Amuulya Image" />
+          <img src="Screenshot 2025-06-30 041449.png" alt="amuulya" />
         </div>
         <div class="back">
-          You’re never alone 🤗<br>
-          Don’t be afraid to share what’s on your mind.<br>
-          I’m here whenever you need me. Just text me. 📩
+          <p>Don’t feel sad or anxious... 💗<br>Text me anytime — I’m always here for you :)</p>
         </div>
       </div>
     </div>
 
-    <!-- Rotating messages -->
-    <div id="message">You're stronger than you think 🌟</div>
-    <button id="nextBtn">Next Message</button>
+    <div class="message-box" id="message">You are stronger than you think 💪</div>
+    <button onclick="changeMessage()">Next</button>
   </div>
 
   <script>
     const messages = [
-      "You're stronger than you think 🌟",
-      "Whatever you're going through, it will pass ☀️",
-      "You're not alone in this. I’ve got your back 💪",
-      "It’s okay to feel low sometimes. You don’t have to hide it 🤍",
-      "Your feelings are valid. Always. 🧠❤️",
-      "One step at a time, no rush 🐢✨",
-      "You matter more than you know 💛",
-      "I’m always just a message away 📲"
+      "You are stronger than you think 💪",
+      "It’s okay to have tough days 🌧️",
+      "You’ve got a heart of gold ✨",
+      "I’m here if you need to vent 💬",
+      "Just breathe... you’ve got this 🌈"
     ];
 
-    let currentIndex = 0;
-    const messageDiv = document.getElementById("message");
-    const button = document.getElementById("nextBtn");
-
-    button.addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % messages.length;
-      messageDiv.textContent = messages[currentIndex];
-    });
-
-    const flipCard = document.getElementById("flipCard");
-    flipCard.addEventListener("click", () => {
-      flipCard.classList.toggle("flipped");
-    });
-
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 6 + Math.random() * 4 + "s";
-      document.getElementById("hearts-container").appendChild(heart);
-      setTimeout(() => heart.remove(), 10000);
+    let index = 0;
+    function changeMessage() {
+      index = (index + 1) % messages.length;
+      document.getElementById('message').textContent = messages[index];
     }
 
-    setInterval(createHeart, 500);
+    function flipImage(el) {
+      el.classList.toggle('flipped');
+    }
   </script>
-
 </body>
 </html>
