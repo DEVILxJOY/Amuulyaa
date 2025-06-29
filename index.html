@@ -6,17 +6,21 @@
   <title>For Amuulya</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #f6d5f7, #fbe9d7);
-      overflow: hidden;
+      overflow-x: hidden;
       position: relative;
     }
 
     .center-container {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -64,15 +68,14 @@
       backface-visibility: hidden;
       border-radius: 50%;
       overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
     .front img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 50%;
       border: 4px solid #ffb6c1;
+      border-radius: 50%;
     }
 
     .back {
@@ -88,6 +91,17 @@
       line-height: 1.2rem;
       text-align: center;
       overflow: hidden;
+    }
+
+    .back p {
+      padding: 10px;
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
     }
 
     .message-box {
@@ -156,10 +170,10 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       pointer-events: none;
       overflow: hidden;
-      z-index: 0;
+      z-index: 1;
     }
 
     .heart {
@@ -170,20 +184,26 @@
     }
 
     @keyframes fall {
-      0% { transform: translateY(-10%); opacity: 0.6; }
-      100% { transform: translateY(110%); opacity: 0; }
+      0% {
+        transform: translateY(-10%);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- GIFs in corners -->
+  <!-- Corner GIFs -->
   <img src="https://i.postimg.cc/6qqf9n95/Milk-And-Mocha-Kiss-Sticker-Milk-And-Mocha-Kiss-Love-Discover-Share-GIFs.gif" class="corner-gif top-left" />
   <img src="https://i.postimg.cc/6qqf9n95/Milk-And-Mocha-Kiss-Sticker-Milk-And-Mocha-Kiss-Love-Discover-Share-GIFs.gif" class="corner-gif bottom-right" />
 
-  <!-- Falling hearts -->
+  <!-- Falling Hearts -->
   <div class="hearts" id="hearts"></div>
 
-  <!-- Main center content -->
+  <!-- Main Content -->
   <div class="center-container">
     <h1>Hi Amuulya 🌸</h1>
 
@@ -210,7 +230,6 @@
       "I’m here if you need to vent 💬",
       "Just breathe... you’ve got this 🌈"
     ];
-
     let index = 0;
     function changeMessage() {
       index = (index + 1) % messages.length;
@@ -221,7 +240,7 @@
       el.classList.toggle('flipped');
     }
 
-    // Falling hearts animation
+    // Falling hearts
     const heartContainer = document.getElementById('hearts');
     function createHeart() {
       const heart = document.createElement('div');
@@ -230,8 +249,9 @@
       heart.style.left = Math.random() * 100 + 'vw';
       heart.style.animationDuration = 3 + Math.random() * 2 + 's';
       heart.style.fontSize = 12 + Math.random() * 20 + 'px';
+      heart.style.opacity = 0.5;
       heartContainer.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
+      setTimeout(() => heart.remove(), 6000);
     }
     setInterval(createHeart, 300);
   </script>
