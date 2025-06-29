@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For Amuulyaa 💖</title>
+  <title>For Amuulya 💖</title>
   <style>
     * {
       margin: 0;
@@ -16,7 +16,8 @@
       background: linear-gradient(to bottom right, #ffd6ec, #ffe2f7, #fff0f5);
       font-family: 'Comic Sans MS', cursive, sans-serif;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: flex-start;
       align-items: center;
       overflow: hidden;
       position: relative;
@@ -24,8 +25,20 @@
       padding: 20px;
     }
 
+    .page-heading {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      color: #ffffff;
+      font-size: 1.8rem;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      animation: fadeInDown 1.5s ease-out;
+      text-shadow: 1px 1px 6px #ffb3ec;
+    }
+
     .message-container {
       z-index: 2;
+      margin-top: 10px;
     }
 
     .flip-container {
@@ -129,6 +142,17 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .corner-gif {
       position: fixed;
       width: 100px;
@@ -173,6 +197,10 @@
         font-size: 0.95rem;
         padding: 10px 18px;
       }
+
+      .page-heading {
+        font-size: 1.4rem;
+      }
     }
   </style>
 </head>
@@ -182,38 +210,44 @@
   <img src="https://i.pinimg.com/originals/4d/b5/71/4db57193238c0d242f5306beb3b8e542.gif" class="corner-gif top-left" />
   <img src="https://i.pinimg.com/originals/4d/b5/71/4db57193238c0d242f5306beb3b8e542.gif" class="corner-gif bottom-right" />
 
+  <!-- Heading -->
+  <h1 class="page-heading">Hey Amuulya, this space is just for you 💫</h1>
+
   <div class="message-container">
     <!-- Flip Circle Image -->
     <div class="flip-container" id="flipMe">
       <div class="flipper">
         <div class="front">
-          <img src="Screenshot 2025-06-30 041449.png" alt="Amuulyaa" />
+          <img src="Screenshot 2025-06-30 041449.png" alt="Amuulya" />
         </div>
         <div class="back">
-          You have me ❤️<br>Don’t feel sad or anxious.<br>Text me anytime.<br>I’m always here for you.
+          You’re never alone 🤗<br>
+          Don’t be afraid to share what’s on your mind.<br>
+          I’m here whenever you need me.<br>
+          Just text me. I’ll listen. 📩
         </div>
       </div>
     </div>
 
-    <!-- Loving Message -->
+    <!-- Message Box -->
     <div class="message-box" id="message">
-      You're the reason my heart smiles 💕
+      You're stronger than you think 🌟
     </div>
 
-    <!-- Button BELOW message -->
+    <!-- Button -->
     <button class="click-button" onclick="showNextMessage()">Next Message 💫</button>
   </div>
 
   <script>
     const messages = [
-       "You're stronger than you think 🌟",
-        "Whatever you're going through, it will pass ☀️",
-        "You're not alone in this. I’ve got your back 💪",
-        "It’s okay to feel low sometimes. You don’t have to hide it 🤍",
-             "Your feelings are valid. Always. 🧠❤️",
-          "One step at a time, no rush 🐢✨",
-          "You matter more than you know 💛",
-             "I’m always just a message away 📲"
+      "You're stronger than you think 🌟",
+      "Whatever you're going through, it will pass ☀️",
+      "You're not alone in this. I’ve got your back 💪",
+      "It’s okay to feel low sometimes. You don’t have to hide it 🤍",
+      "Your feelings are valid. Always. 🧠❤️",
+      "One step at a time, no rush 🐢✨",
+      "You matter more than you know 💛",
+      "I’m always just a message away 📲"
     ];
 
     let current = 0;
@@ -228,6 +262,7 @@
       }, 200);
     }
 
+    // Falling hearts
     function createHeart() {
       const heart = document.createElement("div");
       heart.classList.add("falling-heart");
@@ -240,6 +275,7 @@
 
     setInterval(createHeart, 500);
 
+    // Flip on click
     document.getElementById("flipMe").addEventListener("click", function () {
       this.classList.toggle("clicked");
     });
